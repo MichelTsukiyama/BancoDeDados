@@ -1,4 +1,4 @@
-# Banco de Dados
+# 1. Banco de Dados
 
 Bancos de dados são ferramentas utilizadas para armazenamento e consulta de dados pelos softwares;
 
@@ -6,17 +6,36 @@ Bancos de dados são ferramentas utilizadas para armazenamento e consulta de dad
 
 <br>
 
-# Sumário
+# 2. Sumário
 <br>
+
+- [1. Banco de Dados](#1-banco-de-dados)
+- [2. Sumário](#2-sumário)
+- [3. Introdução a Banco de dados](#3-introdução-a-banco-de-dados)
+  - [3.1. Dado e Informação](#31-dado-e-informação)
+  - [3.2. Banco de Dados Relacional(SQL) x Não Relacional(NoSQL)](#32-banco-de-dados-relacionalsql-x-não-relacionalnosql)
+    - [3.2.1. Banco de Dados Relacional](#321-banco-de-dados-relacional)
+    - [3.2.2. Banco de Dados Não Relacional](#322-banco-de-dados-não-relacional)
+  - [3.3. Arquitetura Cliente-Servidor](#33-arquitetura-cliente-servidor)
+- [4. Modelagem de Dados](#4-modelagem-de-dados)
+  - [4.1. Modelagem Conceitual, Lógica e Física](#41-modelagem-conceitual-lógica-e-física)
+    - [4.1.1. Modelo conceitual](#411-modelo-conceitual)
+    - [4.1.2. Modelo Lógico](#412-modelo-lógico)
+    - [4.1.3. Modelo Físico](#413-modelo-físico)
+  - [4.2. Normalização de dados](#42-normalização-de-dados)
+    - [4.2.1. Primeira Forma Normal](#421-primeira-forma-normal)
+    - [4.2.2. Segunda Forma Normal](#422-segunda-forma-normal)
+    - [4.2.3. Terceira Forma Normal](#423-terceira-forma-normal)
+    - [4.2.4. Outras Formas Normais](#424-outras-formas-normais)
 
 ---
 
 <br>
 
-# Introdução a Banco de dados
+# 3. Introdução a Banco de dados
 
 
-## Dado e Informação
+## 3.1. Dado e Informação
 <br>
 
 **Dado** -> Elemento bruto, geralmente proveniente de uma entrada do usuário ou de outros sistemas;
@@ -48,7 +67,7 @@ Veja que agora é possível obter informações a partir dos dados organizados e
 
 <br>
 
-## Banco de Dados Relacional(SQL) x Não Relacional(NoSQL)
+## 3.2. Banco de Dados Relacional(SQL) x Não Relacional(NoSQL)
 <br>
 
 - SQL - Structure Query Language (linguagem de consulta estruturada);
@@ -58,7 +77,7 @@ Veja que agora é possível obter informações a partir dos dados organizados e
 ---
 <br>
 
-### Banco de Dados Relacional
+### 3.2.1. Banco de Dados Relacional
 <br>
 
 - Conceito criado por **Edgar Frank Codd**, 1970;
@@ -84,7 +103,7 @@ Veja que agora é possível obter informações a partir dos dados organizados e
 
 <br>
 
-### Banco de Dados Não Relacional
+### 3.2.2. Banco de Dados Não Relacional
 <br>
 
 - Surgiu em 1998, a partir de uma solução de banco de dados que não oferecia uma interface SQL. Posteriormente o termo NoSQL passou a representar soluções que promoviam uma alternativa ao modelo relacional.
@@ -112,7 +131,7 @@ Veja que agora é possível obter informações a partir dos dados organizados e
 -----
 <br>
 
-## Arquitetura Cliente-Servidor
+## 3.3. Arquitetura Cliente-Servidor
 <br>
 
 A arquitetura Cliente-Servidor nada mais é do que um cliente(navegador) fazendo requisições para servidores. Estes buscam o que foi requisitado no banco de dados e devolvem as informações para os clientes;
@@ -126,10 +145,10 @@ A arquitetura Cliente-Servidor nada mais é do que um cliente(navegador) fazendo
 ----
 <br>
 
-# Modelagem de Dados
+# 4. Modelagem de Dados
 <br>
 
-## Modelagem Conceitual, Lógica e Física
+## 4.1. Modelagem Conceitual, Lógica e Física
 <br>
 
 Os modelos são usados para descrever detalhadamente a estrutura de um banco de dados.
@@ -143,22 +162,14 @@ São divididos em três níveis: **Conceitual, Lógico e Físico**;
 ----
 <br>
 
-### Modelo conceitual
+### 4.1.1. Modelo conceitual
 <br>
 
 
 ----
 <br>
 
-### Modelo Lógico
-<br>
-
-
-----
-
-<br>
-
-### Modelo Físico
+### 4.1.2. Modelo Lógico
 <br>
 
 
@@ -166,34 +177,42 @@ São divididos em três níveis: **Conceitual, Lógico e Físico**;
 
 <br>
 
-## Normalização de dados
+### 4.1.3. Modelo Físico
+<br>
+
+
+----
+
+<br>
+
+## 4.2. Normalização de dados
 <br>
 
 ----
 <br>
 
-### Primeira Forma Normal
-<br>
-
-
-----
-<br>
-
-### Segunda Forma Normal
-<br>
-
-
-----
-<br>
-
-### Terceira Forma Normal
+### 4.2.1. Primeira Forma Normal
 <br>
 
 
 ----
 <br>
 
-### Outras Formas Normais
+### 4.2.2. Segunda Forma Normal
+<br>
+
+
+----
+<br>
+
+### 4.2.3. Terceira Forma Normal
+<br>
+
+
+----
+<br>
+
+### 4.2.4. Outras Formas Normais
 <br>
 
 
