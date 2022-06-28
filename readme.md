@@ -22,6 +22,8 @@ Bancos de dados são ferramentas utilizadas para armazenamento e consulta de dad
     - [4.1.1. Modelo conceitual](#411-modelo-conceitual)
     - [4.1.2. Modelo Lógico](#412-modelo-lógico)
     - [4.1.3. Modelo Físico](#413-modelo-físico)
+  - [Conceitos essenciais](#conceitos-essenciais)
+  - [- **Cardinalidade Mínima** - Define a quantidade mínima de ocorrências, normalmente representadas por 0..1, 1..1, 0..n ou 0..* ('*' significa muitos);](#--cardinalidade-mínima---define-a-quantidade-mínima-de-ocorrências-normalmente-representadas-por-01-11-0n-ou-0--significa-muitos)
   - [4.2. Normalização de dados](#42-normalização-de-dados)
     - [4.2.1. Primeira Forma Normal](#421-primeira-forma-normal)
     - [4.2.2. Segunda Forma Normal](#422-segunda-forma-normal)
@@ -165,6 +167,16 @@ São divididos em três níveis: **Conceitual, Lógico e Físico**;
 ### 4.1.1. Modelo conceitual
 <br>
 
+- modelo de mais alto nível, mais próximo da linguagem humana;
+- é desenvolvido com alto nível de abstração, a partir dos requisitos do sistema;
+- pode ser elaborado de forma textual ou por diagramas de Entidade e Relacionamento e/ou Diagrama de Classes.
+
+<center>
+
+![modeloconceitual](src/modelo%20conceitual.png)
+
+</center
+>
 
 ----
 <br>
@@ -172,6 +184,16 @@ São divididos em três níveis: **Conceitual, Lógico e Físico**;
 ### 4.1.2. Modelo Lógico
 <br>
 
+- Descreve como os dados serão armazenados no banco de dados, e também seus relacionamentos;
+- Neste modelo pode ser definida a tecnologia a ser utilizada, Relacional ou não Relacional;
+
+<center>
+
+![modelo-logico](src/modelo-logico.png)
+
+</center>
+
+ - Também pode ser apresentado como um tabela, com exemplos de dados;
 
 ----
 
@@ -180,8 +202,29 @@ São divididos em três níveis: **Conceitual, Lógico e Físico**;
 ### 4.1.3. Modelo Físico
 <br>
 
+- Também chamado de modelo de implementação;
+- descreve por meio de alguma linguagem, normalmente SQL, como será feito o armazenamento no banco;
+- Aqui é feita a escolha do SGBD, levando em consideração o modelo lógico adotado.
 
 ----
+
+<br>
+
+## Conceitos essenciais
+<br>
+
+- **Entidade** - Objeto ou evento do mundo real sobre o qual desejamos manter registros em um banco de dados. Ex.: Carro, Produto, Aluno, Venda...(entidade e tabela são a mesma coisa);
+- **Atributo** - Propriedade ou característica que descreve uma entidade. São colunas das tabelas que irão armazenar os dados. Também pode ser chamado de campo;
+- **Atributo Chave** - Também conhecido por PK, primary key ou chave primária. É um campo com valor único, não pode se repetir, em todo o conjunto da Entidade. É utilizado como identificador único na tabela;
+- **Relacionamentos** - Geralmente as entidades nunca estão sozinhas. Elas são relacionadas a outras entidades. Pode acontecer entre várias entidades;
+- **Chave Estrangeira** - Também conhecida por Foreign key ou FK. Semelhante a PK, indica um relacionamento e a chave primária de outra tabela;
+- **Grau de Relacionamento** - Indica a quantidade de entidades ligadas a um relacionamento. Pode ser unário, binário, ternário...;
+- **Relacionamento Unário** - Uma entidade se relaciona com ela mesma. Ex. Funcionário -> Gerencia (funcionário gerencia outro funcionário);
+- **Relacionamento Binário** - Uma entidade se relaciona com outra entidade. Modelo mais comum. Ex.: Vendedor -> Produto, são tabelas diferentes.
+- **Relacionamento ternário** - Três entidades estão relacionadas. Ex. Cliente -> Tipo de pagamento -> Vendedor
+- **Cardinalidade Máxima** - Quantidade máxima de ocorrências de uma entidade associada a outra entidade. Ex. Uma turma comporta vários alunos (1 : n); Uma entrega tem apenas um endereço de entrega(1 : 1); No caso de muitos para muitos (n : m) são necessárias 3 tabelas;
+- **Cardinalidade Mínima** - Define a quantidade mínima de ocorrências, normalmente representadas por 0..1, 1..1, 0..n ou 0..* ('*' significa muitos);
+---
 
 <br>
 
