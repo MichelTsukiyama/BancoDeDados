@@ -25,10 +25,11 @@ Bancos de dados são ferramentas utilizadas para armazenamento e consulta de dad
   - [Conceitos essenciais](#conceitos-essenciais)
   - [- **Cardinalidade Mínima** - Define a quantidade mínima de ocorrências, normalmente representadas por 0..1, 1..1, 0..n ou 0..* ('*' significa muitos);](#--cardinalidade-mínima---define-a-quantidade-mínima-de-ocorrências-normalmente-representadas-por-01-11-0n-ou-0--significa-muitos)
   - [4.2. Normalização de dados](#42-normalização-de-dados)
-    - [4.2.1. Primeira Forma Normal](#421-primeira-forma-normal)
-    - [4.2.2. Segunda Forma Normal](#422-segunda-forma-normal)
-    - [4.2.3. Terceira Forma Normal](#423-terceira-forma-normal)
+    - [4.2.1. Primeira Forma Normal (1FN)](#421-primeira-forma-normal-1fn)
+    - [4.2.2. Segunda Forma Normal (2FN)](#422-segunda-forma-normal-2fn)
+    - [4.2.3. Terceira Forma Normal (3FN)](#423-terceira-forma-normal-3fn)
     - [4.2.4. Outras Formas Normais](#424-outras-formas-normais)
+  - [](#)
 
 ---
 
@@ -231,26 +232,91 @@ São divididos em três níveis: **Conceitual, Lógico e Físico**;
 ## 4.2. Normalização de dados
 <br>
 
-----
-<br>
+Normalização de dados é o processo formal que examina o documento descritivo gerado pelos analistas de sistemas durante a análise de requisitos. Busca definir as entidades, atributos, relacionamentos, chaves primárias e chaves estrangeiras do banco de dados a ser modelado.
 
-### 4.2.1. Primeira Forma Normal
-<br>
+Esse processo é realizado utilizando regras bem estabelecidas conhecidas como ***Formas Normais***.
 
+Um dos objetivos principais é evitar/amenizar anomalias e inconsistências que podem ocorrer durante a inclusão, exclusão, alteração e consulta de registros em bancos de dados.
 
-----
-<br>
+As vantagens de uma banco de dados normalizado dentro dos padrões é a redução de manutenção, evitar o desperdício de espaço de armazenamento, etc.
 
-### 4.2.2. Segunda Forma Normal
-<br>
-
+Embora existam 5 formas normais, na prática usamos um conjunto de três **Formas Normais**, ou seja, um banco de dados é considerado normalizado se nele foram aplicadas as regras destas três formas normais.
 
 ----
 <br>
 
-### 4.2.3. Terceira Forma Normal
+### 4.2.1. Primeira Forma Normal (1FN)
 <br>
 
+Uma entidade estará na primeira forma normal se todos os campos forem atômicos(simples) e não multivalorados (com múltiplos valores).
+
+Ex.:
+
+Cód_Cliente|Nome|Telefone|Endereço
+-----------|----|--------|--------
+c001|Fulano de Tal|99999-9999| Rua tal, 00, cidade tal, 123456-789
+c002|Ciclano|91111-1111 <br>92222-2222| Rua do ciclano, 00, cidade ciclano, 123456-000
+
+Está em desacordo com a primeira forma normal
+
+- O campo telefone é multivalorado, possui 2 telefones;
+- o campo endereço é multivalorado, possui diversos dados;
+
+Para corrigir o problema o campo endereço precisa ser divido em Rua, Número, Bairro e CEP.
+
+Outra solução seria dividir em tabelas diferentes com chaves estrangeiras:
+
+Cód_Cliente|Telefone
+-----------|--------
+c001|99999-9999
+c002|91111-1111
+c002|92222-2222
+
+
+----
+<br>
+
+### 4.2.2. Segunda Forma Normal (2FN)
+<br>
+
+Uma entidade estará na 2FN se ela já se encontrar na 1FN e todos os atributos ***NÃO*** chave forem totalmente dependentes da chave primária.
+
+Ex.:
+
+N_pedido|Cod_Produto|Produto|Quant|Valor_Unit|Subtotal
+--------|-----------|-------|-----|----------|--------
+1005 | 1-934| Impressora laser| 5 | 1500.00| 7500.00
+1006 | 1-956| Impressora matricial| 1 | 190.00 |190.00
+
+Neste caso, tanto o Produto, quanto o Valor_Unit dependem do código do produto e dependem dele. Seria necessário criar outra tabela a parte:
+
+Cod_Produto|Produto|Valor_Unit
+-----------|-------|----------
+ 1-934| Impressora laser| 1500.00
+ 1-956| Impressora matricial| 190.00
+
+----
+<br>
+
+### 4.2.3. Terceira Forma Normal (3FN)
+<br>
+
+Uma tabela estará na 3FN se estiver na 2FN e se nenhuma coluna ***NÃO*** chave depender de outra coluna ***NÃO*** chave.
+
+Ex.:
+
+N_pedido|Cod_Produto|Quant|Valor_Unit|Subtotal
+--------|-----------|-----|----------|--------
+1005 | 1-934|  5 | 1500.00| 7500.00
+1006 | 1-956|  1 | 190.00 |190.00
+
+- A Coluna Subtotal depende dos valores Quant e Valor_Unit. Como já foi feito no exemplo anterior, Valor_Unit deveria estar junto ao produto e ser removido desta tabela;
+- A coluna Subtotal também deve ser removida, visto que através dos dados na tabela cód_produto e Quant ainda é possível obter o valor de Subtotal
+
+N_pedido|Cod_Produto|Quant
+--------|-----------|-----
+1005 | 1-934|  5 
+1006 | 1-956|  1 
 
 ----
 <br>
@@ -258,5 +324,40 @@ São divididos em três níveis: **Conceitual, Lógico e Físico**;
 ### 4.2.4. Outras Formas Normais
 <br>
 
+Dependendo da complexidade do projeto, apesar de raro, é possível que seja necessário aplicar a 4FN ou 5FN.
+
+- **4FN** - precisa estar na 3FN, a tabela não conter múltiplas entradas multivaloradas (valores repetidos em diferentes colunas):
+
+paciente|plano|exame
+-------|-------|----
+Murilo | São Camilo| Endoscopia
+Murilo | Unimed | Endoscopia
+Murilo | São Camilo| Hemograma
+Murilo | Unimed| Hemograma
+
+Se realizar uma busca nessa tabela, com as colunas Exame e Plano juntas, retornaria 4 resultados para Murilo, sendo que ele possui apenas 2 planos de saúde. 
+
+Nesse caso seria necessário criar 2 tabelas:
+
+paciente|plano
+---|---
+
+e 
+
+paciente|exame
+----|---
+
+- **5FN** - Precisa estar na 4FN, e quando um atributo está em outra tabela sem a necessidade de estar na tabela pesquisada, e **pode ser removido sem a perda de nenhuma informação.**
+
+<center>
+
+![5fn](src/5FN.png)
+
+</center>
+
+Veja que não é necessária a coluna idProduto(FK) na última tabela. A coluna idFornecedor(FK) já interliga as 3 tabelas, permitindo alcançar a primeira tabela de Produto
 
 ----
+
+## 
+<br>
