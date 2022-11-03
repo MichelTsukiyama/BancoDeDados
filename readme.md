@@ -22,14 +22,19 @@ Bancos de dados são ferramentas utilizadas para armazenamento e consulta de dad
     - [4.1.1. Modelo conceitual](#411-modelo-conceitual)
     - [4.1.2. Modelo Lógico](#412-modelo-lógico)
     - [4.1.3. Modelo Físico](#413-modelo-físico)
-  - [Conceitos essenciais](#conceitos-essenciais)
-  - [- **Cardinalidade Mínima** - Define a quantidade mínima de ocorrências, normalmente representadas por 0..1, 1..1, 0..n ou 0..* ('*' significa muitos);](#--cardinalidade-mínima---define-a-quantidade-mínima-de-ocorrências-normalmente-representadas-por-01-11-0n-ou-0--significa-muitos)
-  - [4.2. Normalização de dados](#42-normalização-de-dados)
-    - [4.2.1. Primeira Forma Normal (1FN)](#421-primeira-forma-normal-1fn)
-    - [4.2.2. Segunda Forma Normal (2FN)](#422-segunda-forma-normal-2fn)
-    - [4.2.3. Terceira Forma Normal (3FN)](#423-terceira-forma-normal-3fn)
-    - [4.2.4. Outras Formas Normais](#424-outras-formas-normais)
-  - [](#)
+  - [4.2. Conceitos essenciais](#42-conceitos-essenciais)
+  - [4.3. Normalização de dados](#43-normalização-de-dados)
+    - [4.3.1. Primeira Forma Normal (1FN)](#431-primeira-forma-normal-1fn)
+    - [4.3.2. Segunda Forma Normal (2FN)](#432-segunda-forma-normal-2fn)
+    - [4.3.3. Terceira Forma Normal (3FN)](#433-terceira-forma-normal-3fn)
+    - [4.3.4. Outras Formas Normais](#434-outras-formas-normais)
+  - [4.4. MER - Modelo Entidade Relacionamento](#44-mer---modelo-entidade-relacionamento)
+- [5. Linguagem SQL](#5-linguagem-sql)
+  - [5.1. DQL - Data Query Language](#51-dql---data-query-language)
+  - [5.2. DML - Data Manipulation Language](#52-dml---data-manipulation-language)
+  - [5.3. DDL - Data Definition Language](#53-ddl---data-definition-language)
+  - [5.4. DCL - Data Control Language](#54-dcl---data-control-language)
+  - [5.5. DTL - Data Transaction Language](#55-dtl---data-transaction-language)
 
 ---
 
@@ -211,7 +216,7 @@ São divididos em três níveis: **Conceitual, Lógico e Físico**;
 
 <br>
 
-## Conceitos essenciais
+## 4.2. Conceitos essenciais
 <br>
 
 - **Entidade** - Objeto ou evento do mundo real sobre o qual desejamos manter registros em um banco de dados. Ex.: Carro, Produto, Aluno, Venda...(entidade e tabela são a mesma coisa);
@@ -225,11 +230,12 @@ São divididos em três níveis: **Conceitual, Lógico e Físico**;
 - **Relacionamento ternário** - Três entidades estão relacionadas. Ex. Cliente -> Tipo de pagamento -> Vendedor
 - **Cardinalidade Máxima** - Quantidade máxima de ocorrências de uma entidade associada a outra entidade. Ex. Uma turma comporta vários alunos (1 : n); Uma entrega tem apenas um endereço de entrega(1 : 1); No caso de muitos para muitos (n : m) são necessárias 3 tabelas;
 - **Cardinalidade Mínima** - Define a quantidade mínima de ocorrências, normalmente representadas por 0..1, 1..1, 0..n ou 0..* ('*' significa muitos);
+  
 ---
 
 <br>
 
-## 4.2. Normalização de dados
+## 4.3. Normalização de dados
 <br>
 
 Normalização de dados é o processo formal que examina o documento descritivo gerado pelos analistas de sistemas durante a análise de requisitos. Busca definir as entidades, atributos, relacionamentos, chaves primárias e chaves estrangeiras do banco de dados a ser modelado.
@@ -245,7 +251,7 @@ Embora existam 5 formas normais, na prática usamos um conjunto de três **Forma
 ----
 <br>
 
-### 4.2.1. Primeira Forma Normal (1FN)
+### 4.3.1. Primeira Forma Normal (1FN)
 <br>
 
 Uma entidade estará na primeira forma normal se todos os campos forem atômicos(simples) e não multivalorados (com múltiplos valores).
@@ -276,7 +282,7 @@ c002|92222-2222
 ----
 <br>
 
-### 4.2.2. Segunda Forma Normal (2FN)
+### 4.3.2. Segunda Forma Normal (2FN)
 <br>
 
 Uma entidade estará na 2FN se ela já se encontrar na 1FN e todos os atributos ***NÃO*** chave forem totalmente dependentes da chave primária.
@@ -298,7 +304,7 @@ Cod_Produto|Produto|Valor_Unit
 ----
 <br>
 
-### 4.2.3. Terceira Forma Normal (3FN)
+### 4.3.3. Terceira Forma Normal (3FN)
 <br>
 
 Uma tabela estará na 3FN se estiver na 2FN e se nenhuma coluna ***NÃO*** chave depender de outra coluna ***NÃO*** chave.
@@ -321,7 +327,7 @@ N_pedido|Cod_Produto|Quant
 ----
 <br>
 
-### 4.2.4. Outras Formas Normais
+### 4.3.4. Outras Formas Normais
 <br>
 
 Dependendo da complexidade do projeto, apesar de raro, é possível que seja necessário aplicar a 4FN ou 5FN.
@@ -359,5 +365,163 @@ Veja que não é necessária a coluna idProduto(FK) na última tabela. A coluna 
 
 ----
 
-## 
+## 4.4. MER - Modelo Entidade Relacionamento
 <br>
+
+O MER (Modelo Entidade Relacionamento) é utilizado para descrever os objetos do mundo real através de entidades, com suas propriedades que são os atributos e os seus relacionamento.
+
+Abaixo segue imagem com exemplo de tabelas (entidades) e seus relacionamentos:
+
+<center>
+
+![exercicioPicole](src/exercicioPicole.png)
+
+</center>
+
+-----
+
+# 5. Linguagem SQL
+<br>
+
+- SQL significa Structured Query Language (linguagem de consulta estruturada);
+- É a linguagem padrão dos Bancos de Dados Relacionais;
+- Inspirada na álgebra relacional;
+- Podem existir pequenas diferenças nos comandos de um banco para outro;
+
+**SQL se divide em 5 subgrupos**
+
+1. DQL - data query language / consulta de dados;
+2. DML - data manipulation language/ manipulação de dados;
+3. DDL - data definition language/ definição de dados
+4. DCL - data control language/ controle de dados;
+5. DTL - data transaction language/ transação de dados.
+
+*Normalmente costumamos escrever os comandos SQL em maiúsculo*.
+
+----
+
+## 5.1. DQL - Data Query Language
+<br>
+
+**Comando**: SELECT
+- Utilizado para realizar consultas;
+- Muito utilizado, permite especificar a consulta;
+- Composto por várias cláusulas e opções, possibilitando elaborar consultas das mais simples as mais complexas.
+
+**Exemplos**:
+
+    SELECT * FROM tipos_produto;
+
+Este comando seleciona todos os dados da tabela "tipos_produto". O asterisco indica que queremos os dados de todos os campos da tabela.
+
+    SELECT codigo, descricao FROM tipo_produto;
+
+Seleciona todos os dados da tabela "tipos_produto" dos campos "codigo" e "descricao".
+
+----
+
+## 5.2. DML - Data Manipulation Language
+<br>
+
+**Comando**: INSERT, UPDATE e DELETE
+- Utilizado para realizar inclusões, alterações e exclusões ,respectivamente, de dados;
+
+**Exemplos**:
+
+    INSERT INTO tipos_produto (descricao) VALUES ('Notebook');
+
+Insere o valor 'Notebook', na tabela 'tipos_produto', na coluna 'descricao'.
+
+    INSERT INTO produtos (descricao, preco, codigo_tipo_produto) VALUES ('Notebook', 1200, 1);
+
+Insere os valores 'Notebook', 1200 e 1, na tabela 'produtos', na coluna 'descricao', 'preco' e 'codigo_tipo_produto'.
+
+    UPDATE tipos_produto set descricao = 'Nobreak' WHERE codigo = 3;
+
+Atualiza um registro da tabela 'tipos_produto', a clausula WHERE especifica qual registro deve ser atualizado;
+
+    UPDATE tipos_produto set descricao = 'Nobreak', preco = 2800 WHERE codigo = 3;
+
+Atualiza os registros de 'descricao' e 'preco' na tabela 'tipos_produto' onde o codigo é 20;
+
+    DELETE FROM tipos_produto WHERE codigo =3;
+
+Exclui da tabela 'tipos_produto' o registro que tenha codigo = 3;
+
+***IMPORTANTE!!***
+
+Cuidado com o comando **UPDATE / DELETE**, se não utilizar o WHERE ***todos os dados serão atualizados/ deletados***, comprometendo as informações no banco de dados. A única possibilidade de recuperar alguma informação é se existir um backup.
+
+----
+
+## 5.3. DDL - Data Definition Language
+<br>
+
+**Comandos**: CREATE, ALTER e DROP
+- Utilizado para criar, alterar e excluir bancos de dados, tabelas e elementos associados como índice e visão.
+
+**Exemplos**:
+
+    CREATE DATABASE financeiro;
+
+Cria um banco de dados chamado 'financeiro';
+
+    CREATE TABLE tipos_produto(codigo INT PRIMARY KEY, descricao VARCHAR(50));
+
+Cria a tabela chamada 'tipos_produto' contendo os campos codigo, do tipo int e chave primária, e 'descricao' do tipo varchar com até 50 caracteres;
+
+    ALTER TABLE tipos_produto ADD peso DECIMAL(8,2);
+
+Altera a estrutura da tabela 'tipos_produto' acrescentando um campo chamado 'peso', do tipo decimal com 8 digitos antes da vírgula e 2 após;
+
+    DROP TABLE tipos_produto;
+
+Apaga a tabela 'tipos_produto', desde que não tenha relacionamentos;
+
+    DROP DATABASE financeiro;
+
+Apaga o banco de dados financeiro;
+
+---
+
+## 5.4. DCL - Data Control Language
+<br>
+
+**Comandos**: GRANT e REVOKE
+- São utilizados para autorizar ou remover um usuários a executar operações no banco de dados;
+
+**Exemplos**:
+
+    GRANT SELECT ON tipos_produto TO geek;
+
+Concede permissão de consulta na tabela tipos_produto ao usuário 'geek';
+
+    REVOKE CREATE TABLE FROM geek;
+
+Remove a permissão de criação de tabelas no banco de dados do usuário 'geek';
+
+## 5.5. DTL - Data Transaction Language
+<br>
+
+**Comandos**: BEGIN, COMMIT e ROLLBACK;
+- São utilizados para iniciar ou finalizar uma transação, ou descartar alterações;
+
+**Exemplos**:
+
+    CREATE TABLE 'tipos_produto' (codigo INT PRIMARY KEY, descricao VARCHAR(50));
+    BEGIN TRANSACTION; //começo da transação
+      INSERT INTO tipos_produtos VALUES ('Notebook');
+      INSERT INTO tipos_produtos VALUES ('Nobreak');
+    COMMIT; // termina a transação e grava os dados
+
+No exemplo acima, a transação é iniciado com o comando BEGIN, os dados são inseridos e finaliza a transação com o comando COMMIT;
+
+    CREATE TABLE 'tipos_produto' (codigo INT PRIMARY KEY, descricao VARCHAR(50));
+    BEGIN TRANSACTION; //começo da transação
+      INSERT INTO tipos_produtos VALUES ('Notebook');
+      INSERT INTO tipos_produtos VALUES ('Nobreak');
+    ROLLBACK; // as inserções acima são desfeitas
+
+Idêntico ao exemplo anterior, mas as alterações são descartadas.
+
+----
